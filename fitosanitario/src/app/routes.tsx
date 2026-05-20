@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import { AppLayout } from '../layouts/AppLayout'
 
 const Dashboard = lazy(() => import('../features/dashboard/DashboardPage'))
@@ -11,7 +11,7 @@ const Reports = lazy(() => import('../features/reports/ReportsPage'))
 const Rules = lazy(() => import('../features/rules/RulesPage'))
 const Audit = lazy(() => import('../features/audit/AuditPage'))
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     element: <AppLayout />,
     children: [
@@ -23,6 +23,7 @@ export const router = createBrowserRouter([
       { path: '/reportes', element: <Reports /> },
       { path: '/reglas', element: <Rules /> },
       { path: '/auditoria', element: <Audit /> },
+      { path: '*', element: <Dashboard /> }, // Catch-all route just in case
     ],
   },
 ])
