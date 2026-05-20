@@ -155,13 +155,14 @@ export function ChatBot() {
         )}
       </button>
 
-      {/* Chat panel — full screen on mobile, large panel on desktop */}
+      {/* Chat panel — full screen on mobile, bounded panel on desktop */}
       <div
         className={`fixed z-50 flex flex-col bg-white shadow-2xl transition-all duration-300 origin-bottom-right
-          /* mobile: full screen minus bottom bar */
+          /* mobile: full screen below header */
           inset-x-0 bottom-0 top-16 rounded-t-2xl
-          /* desktop: fixed panel bottom-right */
-          sm:inset-auto sm:bottom-24 sm:right-5 sm:top-auto sm:w-[420px] sm:h-[600px] sm:rounded-2xl
+          /* desktop: fixed bottom-right, capped to viewport */
+          sm:inset-auto sm:bottom-20 sm:right-5 sm:top-auto sm:left-auto sm:w-[400px]
+          sm:h-[560px] sm:max-h-[calc(100vh-7rem)] sm:rounded-2xl
           border border-slate-200
           ${open ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}
         `}
