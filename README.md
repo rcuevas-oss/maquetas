@@ -12,6 +12,7 @@ repositorio original.
 | [`bicycle-workshop-pro-saas/`](./bicycle-workshop-pro-saas) | SaaS para talleres de bicicletas — landing + dashboard demo. |
 | [`good-style-studios/`](./good-style-studios) | Barbería premium en Linares — landing + reserva online + panel admin. |
 | [`tienda-limpieza-mockup/`](./tienda-limpieza-mockup) | E-commerce de tienda de limpieza — catálogo + carrito. |
+| [`riderbio/`](./riderbio) | Prototipo de plataforma SaaS para ciclistas y tiendas de bicicletas — landing + paneles rider/marca + integraciones (PB, R2, Resend). Idea descartada como cliente, mantenida como referencia. |
 
 ## Cómo usar este repositorio
 
