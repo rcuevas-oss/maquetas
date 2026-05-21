@@ -1,0 +1,20 @@
+{
+  "name": "collaborations",
+  "type": "base",
+  "listRule": "brand.id = @request.auth.id || rider.id = @request.auth.id",
+  "viewRule": "brand.id = @request.auth.id || rider.id = @request.auth.id",
+  "createRule": "@request.auth.id != \"\" && @request.auth.collectionName = \"brands\"",
+  "updateRule": "brand.id = @request.auth.id || rider.id = @request.auth.id",
+  "deleteRule": "brand.id = @request.auth.id",
+  "fields": [
+    { "name": "brand",   "type": "relation", "required": true, "collectionName": "brands", "maxSelect": 1 },
+    { "name": "rider",   "type": "relation", "required": true, "collectionName": "riders", "maxSelect": 1 },
+    { "name": "status",  "type": "select",   "required": true,
+      "maxSelect": 1, "values": ["pending", "active", "ended"] },
+    { "name": "message", "type": "text",     "required": false }
+  ],
+  "indexes": [
+    "CREATE INDEX idx_collaborations_brand ON collaborations (brand)",
+    "CREATE INDEX idx_collaborations_rider ON collaborations (rider)"
+  ]
+}
