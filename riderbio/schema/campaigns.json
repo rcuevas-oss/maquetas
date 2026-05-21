@@ -1,0 +1,23 @@
+{
+  "name": "campaigns",
+  "type": "base",
+  "listRule": "brand.id = @request.auth.id || rider.id = @request.auth.id",
+  "viewRule": "brand.id = @request.auth.id || rider.id = @request.auth.id",
+  "createRule": "@request.auth.id != \"\" && @request.auth.collectionName = \"brands\"",
+  "updateRule": "brand.id = @request.auth.id",
+  "deleteRule": "brand.id = @request.auth.id",
+  "fields": [
+    { "name": "brand",         "type": "relation", "required": true,  "collectionName": "brands", "maxSelect": 1 },
+    { "name": "rider",         "type": "relation", "required": true,  "collectionName": "riders", "maxSelect": 1 },
+    { "name": "name",          "type": "text",     "required": true },
+    { "name": "discount_code", "type": "text",     "required": false },
+    { "name": "referral_url",  "type": "url",      "required": false },
+    { "name": "status",        "type": "select",   "required": true,
+      "maxSelect": 1, "values": ["pending", "active", "ended"] },
+    { "name": "click_count",   "type": "number",   "required": false }
+  ],
+  "indexes": [
+    "CREATE INDEX idx_campaigns_brand ON campaigns (brand)",
+    "CREATE INDEX idx_campaigns_rider ON campaigns (rider)"
+  ]
+}

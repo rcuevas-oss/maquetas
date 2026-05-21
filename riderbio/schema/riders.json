@@ -1,0 +1,23 @@
+{
+  "name": "riders",
+  "type": "auth",
+  "listRule": "is_active = true || id = @request.auth.id",
+  "viewRule": "is_active = true || id = @request.auth.id",
+  "createRule": "",
+  "updateRule": "id = @request.auth.id",
+  "deleteRule": null,
+  "fields": [
+    { "name": "username",     "type": "text",  "required": true },
+    { "name": "display_name", "type": "text",  "required": true },
+    { "name": "discipline",   "type": "text",  "required": false },
+    { "name": "city",         "type": "text",  "required": false },
+    { "name": "bio",          "type": "text",  "required": false },
+    { "name": "quote",        "type": "text",  "required": false },
+    { "name": "avatar_url",   "type": "text",  "required": false },
+    { "name": "cover_url",    "type": "text",  "required": false },
+    { "name": "is_active",    "type": "bool",  "required": false }
+  ],
+  "indexes": [
+    "CREATE UNIQUE INDEX idx_riders_username ON riders (username)"
+  ]
+}

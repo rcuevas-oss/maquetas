@@ -1,0 +1,22 @@
+{
+  "name": "rider_links",
+  "type": "base",
+  "listRule": "",
+  "viewRule": "",
+  "createRule": "@request.auth.id != \"\" && @request.auth.collectionName = \"riders\"",
+  "updateRule": "rider.id = @request.auth.id",
+  "deleteRule": "rider.id = @request.auth.id",
+  "fields": [
+    { "name": "rider",       "type": "relation", "required": true,  "collectionName": "riders", "maxSelect": 1 },
+    { "name": "label",       "type": "text",     "required": true },
+    { "name": "sublabel",    "type": "text",     "required": false },
+    { "name": "url",         "type": "url",      "required": true },
+    { "name": "icon",        "type": "text",     "required": false },
+    { "name": "position",    "type": "number",   "required": false },
+    { "name": "click_count", "type": "number",   "required": false },
+    { "name": "is_active",   "type": "bool",     "required": false }
+  ],
+  "indexes": [
+    "CREATE INDEX idx_rider_links_rider ON rider_links (rider)"
+  ]
+}
