@@ -1,0 +1,17 @@
+{
+  "name": "link_clicks",
+  "type": "base",
+  "listRule": null,
+  "viewRule": null,
+  "createRule": "",
+  "updateRule": null,
+  "deleteRule": null,
+  "fields": [
+    { "name": "link",       "type": "relation", "required": true,  "collectionName": "rider_links", "maxSelect": 1 },
+    { "name": "clicked_at", "type": "date",     "required": false },
+    { "name": "ua_hint",    "type": "text",     "required": false }
+  ],
+  "indexes": [
+    "CREATE INDEX idx_link_clicks_link ON link_clicks (link)"
+  ]
+}

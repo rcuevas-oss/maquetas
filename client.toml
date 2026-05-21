@@ -1,0 +1,52 @@
+[client]
+name = "riderbio"
+type = "full-stack"
+display_name = "RiderBio"
+industry = "ciclismo / plataforma SaaS"
+contact_email = "admin@riderbio.cl"
+# contact_phone  — a completar
+# contact_address — a completar
+
+[infrastructure]
+pb_container = "pocketbase-riderbio"
+pb_port = 8094
+pb_admin_email = "admin@riderbio.cl"
+pb_data_volume = "/opt/riderbio/pb_data"
+subdomain = "riderbio.larefactoria.cl"     # dominio temporal — sin dominio propio por ahora
+tunnel_type = "cloudflare-named"
+
+[projects]
+active = ["landing", "rider-panel"]
+planned = ["brand-panel"]
+
+[deploy.landing]
+provider = "cloudflare-pages"
+url = "https://riderbio.larefactoria.cl"
+stack = "React 19 + Vite 6 + TS + Tailwind + PocketBase SDK"
+static_build = "clients/riderbio/landing/dist"
+
+[deploy.rider-panel]
+provider = "vps-nginx"
+url = "https://panel-riderbio.larefactoria.cl"
+stack = "React 19 + Vite 6 + TS + Tailwind + PocketBase SDK"
+static_build = "clients/riderbio/rider-panel/dist"
+
+[deploy.brand-panel]
+provider = "vps-nginx"
+url = "https://marcas-riderbio.larefactoria.cl"
+stack = "React 19 + Vite 6 + TS + Tailwind + PocketBase SDK"
+static_build = "clients/riderbio/brand-panel/dist"
+
+[features]
+active = ["lead_capture"]
+planned = ["public_profiles", "link_tracking", "rider_panel", "brand_panel", "campaigns", "collaborations"]
+
+[integrations.active]
+# PB core 8090 — colección interested_leads captura contactos desde el formulario de la landing
+pb_core_leads = { role = "lead_capture", collection = "interested_leads", port = 8090 }
+
+[integrations.planned]
+# Resend — notificación cuando entra un lead desde la landing
+resend = { role = "notificacion_lead", from = "leads@larefactoria.cl", to = "admin@riderbio.cl" }
+# Cloudflare R2 — imágenes de perfil y cover de riders
+r2 = { role = "cdn_imagenes", bucket = "riderbio-media" }

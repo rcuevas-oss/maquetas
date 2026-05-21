@@ -1,0 +1,17 @@
+{
+  "name": "brands",
+  "type": "auth",
+  "listRule": "@request.auth.id != \"\"",
+  "viewRule": "@request.auth.id != \"\"",
+  "createRule": "",
+  "updateRule": "id = @request.auth.id",
+  "deleteRule": null,
+  "fields": [
+    { "name": "company_name", "type": "text",  "required": true },
+    { "name": "logo_url",     "type": "text",  "required": false },
+    { "name": "website",      "type": "url",   "required": false },
+    { "name": "contact_name", "type": "text",  "required": false },
+    { "name": "is_active",    "type": "bool",  "required": false }
+  ],
+  "indexes": []
+}
